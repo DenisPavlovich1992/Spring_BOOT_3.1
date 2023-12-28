@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #6faf4c;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(69, 160, 73, 0.44);
+        }
+    </style>
+    <title>WorkWithUsers</title>
+</head>
+<body>
+<h1>Users</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+</table>
+
+<form method="post" action="/add">
+    <label>
+        <input type="text" name="name" placeholder="Name">
+    </label>
+    <label>
+        <input type="text" name="surname" placeholder="Surname">
+    </label>
+    <label>
+        <input type="text" name="email" placeholder="Email">
+    </label>
+    <input type="submit" value="Add User">
+</form>
+<br>
+
+<form method="post" action="/update">
+    <label>
+        <input type="number" name="id" placeholder="User ID" min="1">
+    </label>
+    <label>
+        <input type="text" name="name" placeholder="New Name">
+    </label>
+    <label>
+        <input type="text" name="surname" placeholder="New Surname">
+    </label>
+    <label>
+        <input type="text" name="email" placeholder="New Email">
+    </label>
+    <input type="submit" value="Update User">
+</form>
+<br>
+
+<form method="post" action="/delete">
+    <label>
+        <input type="number" name="id" placeholder="User ID" min="1">
+    </label>
+    <input type="submit" value="Delete User">
+</form>
+
+</body>
+</html>
