@@ -18,15 +18,8 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args){
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS users (\n" +
-                "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                "    email VARCHAR(255),\n" +
-                "    name VARCHAR(255),\n" +
-                "    surname VARCHAR(255)\n" +
-                ");");
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), NAME VARCHAR(255), surname VARCHAR(255));");
 
-        jdbcTemplate.execute("INSERT INTO users (email, name, surname) VALUES\n" +
-                "    ('user1@gmail.com', 'user1', 'surname1'),\n" +
-                "    ('user2@gmail.com', 'user2', 'surname2');");
+        jdbcTemplate.execute("INSERT INTO users (email, name, surname) VALUES('user1@gmail.com', 'user1', 'surname1'),('user2@gmail.com', 'user2', 'surname2');");
     }
 }
