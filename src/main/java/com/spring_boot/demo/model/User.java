@@ -1,15 +1,14 @@
 package com.spring_boot.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
-@ToString
 @Entity(name = "users")
 public class User {
 
@@ -18,12 +17,17 @@ public class User {
     @Column
     private Long id;
 
-    @Column
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 30, message = "Name must be between 2 and 30 characters")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column
+    @NotBlank(message = "Surname is required")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
+    @Pattern(regexp = ".*@gmail\\.com", message = "Only @gmail.com emails are allowed")
+    @Email(message = "Email is not valid")
     @Column
     private String email;
 
